@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.FruitSalesPlatform.dao.RetailerDao">
+    <insert id="insertOne">
+      insert into retailer(retailerid, name, telphone, address, status, createtime)
+      values (#{retailerid},#{name},#{telphone},#{address},#{status},#{createtime});
+    </insert>
+
+    <delete id="deleteById">
+      delete from retailer where retailerid=#{retailerid};
+    </delete>
+
+    <update id="changeStatus">
+      update retailer  set status=#{status} where retailerid=#{retailerid};
+    </update>
+
+    <update id="updateById">
+      update retailer
+      set name=#{name},telphone=#{telphone},address=#{address},status=#{status},createtime=#{createtime}
+      where retailerid=#{retailerid};
+    </update>
+
+    <select id="findListByKey" resultType="com.FruitSalesPlatform.entity.Retailer">
+        select * from retailer
+        where retailerid!=1
+        <if test="name!=null and name!=''">
+           and name like '%${name}%'
+        </if>
+        <if test="telphone!=null and telphone!=''">
+           and telphone like '%${telphone}%'
+        </if>
+        <if test="address!=null and address!=''">
+           and address like '%${address}%'
+        </if>
+        <if test="status!=null">
+            and status=${status}
+        </if>
+        <if test="createtime!=null">
+            and createtime like '%${createtime}%'
+        </if>
+        <if test="pageNum!=null and pageSize!=null">
+            limit ${(pageNum-1)*pageSize},${pageSize};
+        </if>
+    </select>
+
+    <select id="findPages" resultType="com.FruitSalesPlatform.entity.Retailer">
+      select * from retailer
+        <if test="pageNum!=null and pageSize!=null">
+            limit ${(pageNum-1)*pageSize},${pageSize};
+        </if>
+    </select>
+    <select id="selectById" resultType="com.FruitSalesPlatform.entity.Retailer">
+        select * from retailer where retailerid=#{retailerid};
+    </select>
+
+    <select id="count" resultType="java.lang.Long">
+        select count(*) from retailer;
+    </select>
+    <select id="countByKey" resultType="java.lang.Long">
+        select count(*) from retailer
+        where retailerid!=1
+        <if test="name!=null and name!=''">
+            and name like '%${name}%'
+        </if>
+        <if test="telphone!=null">
+            and telphone like '%${telphone}%'
+        </if>
+        <if test="address!=null">
+            and address like '%${address}%'
+        </if>
+        <if test="status!=null">
+            and status=${status}
+        </if>
+        <if test="createtime!=null">
+            and createtime like '%${createtime}%'
+        </if>
+    </select>
+
+</mapper>

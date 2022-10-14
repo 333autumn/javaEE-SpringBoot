@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.FruitSalesPlatform.dao.UserDao">
+
+    <select id="selectById" resultType="com.FruitSalesPlatform.entity.User">
+        select * from userwhere userid=#{userid};
+    </select>
+
+    <delete id="deleteById">
+        delete from userwhere userid=#{userid};
+    </delete>
+
+    <insert id="insertOne">
+        insert into user(userid,username,password,name,telphone)
+        values (#{userid},#{username},#{password},#{name},#{telphone});
+    </insert>
+
+    <select id="findList" resultType="com.FruitSalesPlatform.entity.User">
+        select * from user;
+    </select>
+
+    <select id="selectByUserName" resultType="com.FruitSalesPlatform.entity.User">
+        select * from user where username=#{username};
+    </select>
+
+    <update id="updateById">
+        update user
+        set username=#{username},password=#{password},name=#{name},telphone=#{telphone}
+        where id=#{userid};
+    </update>
+
+</mapper>
