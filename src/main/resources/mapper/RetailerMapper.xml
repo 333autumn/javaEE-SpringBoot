@@ -49,6 +49,7 @@
             limit ${(pageNum-1)*pageSize},${pageSize};
         </if>
     </select>
+
     <select id="selectById" resultType="com.FruitSalesPlatform.entity.Retailer">
         select * from retailer where retailerid=#{retailerid};
     </select>
@@ -56,6 +57,7 @@
     <select id="count" resultType="java.lang.Long">
         select count(*) from retailer;
     </select>
+
     <select id="countByKey" resultType="java.lang.Long">
         select count(*) from retailer
         where retailerid!=1

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.FruitSalesPlatform.dao.AccessoryDao">
+
+    <delete id="deleteByFruitId">
+        delete from accessory where fruitid=#{fruitid};
+    </delete>
+
+    <delete id="deleteBatch">
+
+    </delete>
+
+
+</mapper>
