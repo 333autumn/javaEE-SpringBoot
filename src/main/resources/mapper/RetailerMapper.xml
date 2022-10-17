@@ -20,7 +20,7 @@
       where retailerid=#{retailerid};
     </update>
 
-    <select id="findListByKey" resultType="com.FruitSalesPlatform.entity.Retailer">
+    <select id="findPagesByKey" resultType="com.FruitSalesPlatform.entity.Retailer">
         select * from retailer
         where retailerid!=1
         <if test="name!=null and name!=''">
@@ -76,6 +76,10 @@
         <if test="createtime!=null">
             and createtime like '%${createtime}%'
         </if>
+    </select>
+
+    <select id="findList" resultType="com.FruitSalesPlatform.entity.Retailer">
+        select * from retailer;
     </select>
 
 </mapper>

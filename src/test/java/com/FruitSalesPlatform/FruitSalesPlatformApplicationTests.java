@@ -1,8 +1,10 @@
 package com.FruitSalesPlatform;
 
 import com.FruitSalesPlatform.dao.CommodityDao;
+import com.FruitSalesPlatform.dao.ContractDao;
 import com.FruitSalesPlatform.dao.RetailerDao;
 import com.FruitSalesPlatform.entity.Retailer;
+import com.FruitSalesPlatform.service.impl.ContractServiceImpl;
 import com.FruitSalesPlatform.service.impl.RetailerServiceImpl;
 import com.FruitSalesPlatform.utils.MyDateFormat;
 import com.FruitSalesPlatform.utils.Page;
@@ -49,6 +51,24 @@ class FruitSalesPlatformApplicationTests {
         vo.setName("黄");
 //        commodityDao.countByKey(vo);
 //        commodityDao.findListByKey(vo);
+    }
+
+    @Autowired
+    private ContractDao contractDao;
+
+    @Test
+    void testContractDao(){
+//        contractDao.findPages(1L,5L);
+//        contractDao.findDetail("5636d4e7-36c3-4f5d-b11c-049c8c1f8945");
+        System.out.println(contractDao.getMaxBarCode());
+    }
+
+    @Autowired
+    private ContractServiceImpl contractService;
+
+    @Test
+    void testContractService(){
+        System.out.println(contractService.getCode());
     }
 
 }

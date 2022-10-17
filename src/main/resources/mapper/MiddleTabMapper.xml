@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.FruitSalesPlatform.dao.MiddleTabDao">
+
+    <insert id="insertOne">
+        insert into middle_tab(middleid, contractid, fruitid, number)
+        values (#{middleid},#{contractid},#{fruitid},#{number})
+    </insert>
+
+    <delete id="deleteByContractId">
+        delete from middle_tab where contractid=#{contractid};
+    </delete>
+
+</mapper>

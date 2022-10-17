@@ -48,9 +48,9 @@ public class RetailerServiceImpl implements RetailerService {
     }
 
     @Override
-    public Page<Retailer> findListByKey(RetailerFuzzyVo vo) {
+    public Page<Retailer> findPagesByKey(RetailerFuzzyVo vo) {
         Page<Retailer> page=new Page<>();
-        List<Retailer> retailers = retailerDao.findListByKey(vo);
+        List<Retailer> retailers = retailerDao.findPagesByKey(vo);
         Long total = retailerDao.countByKey(vo);
         page.setTotal(total);
         page.setRows(retailers);
@@ -66,6 +66,11 @@ public class RetailerServiceImpl implements RetailerService {
         }else {
             retailerDao.changeStatus(retailerid,0);
         }
+    }
+
+    @Override
+    public List<Retailer> findList() {
+        return retailerDao.findList();
     }
 
 }

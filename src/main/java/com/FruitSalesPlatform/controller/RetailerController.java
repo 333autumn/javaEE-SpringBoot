@@ -9,6 +9,8 @@ import com.FruitSalesPlatform.vo.RetailerFuzzyVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/retailer")
@@ -22,6 +24,12 @@ public class RetailerController {
                        @RequestParam(required = false)Long pageSize){
         Page<Retailer> pages = retailerService.findPages(pageNum, pageSize);
         return R.success().put(pages);
+    }
+
+    @GetMapping("/findList")
+    public R findList(){
+        List<Retailer> list = retailerService.findList();
+        return R.success().put(list);
     }
 
     @PostMapping("/insert")
@@ -50,7 +58,7 @@ public class RetailerController {
 
     @PostMapping("/fuzzy")
     public R fuzzy(@RequestBody RetailerFuzzyVo vo){
-        Page<Retailer> pages = retailerService.findListByKey(vo);
+        Page<Retailer> pages = retailerService.findPagesByKey(vo);
         return R.success().put(pages);
     }
 

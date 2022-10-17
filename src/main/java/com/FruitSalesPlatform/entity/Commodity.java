@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+/**
+ * 货物
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -40,4 +40,10 @@ public class UserController {
         return R.success();
     }
 
+    @PostMapping("/update")
+    public R update(@RequestBody User user){
+        userService.updateById(user);
+        return R.success();
+    }
+
 }

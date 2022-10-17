@@ -28,7 +28,7 @@
         </if>
     </select>
 
-    <select id="findListByKey" resultType="com.FruitSalesPlatform.entity.Commodity">
+    <select id="findPagesByKey" resultType="com.FruitSalesPlatform.entity.Commodity">
         select * from commodities
         where fruitid!=1
         <if test="name!=null">
@@ -71,6 +71,36 @@
 
     <select id="selectById" resultType="com.FruitSalesPlatform.entity.Retailer">
         select * from commodities where fruitid=#{fruitid};
+    </select>
+
+<resultMap id="findListMap" type="com.FruitSalesPlatform.vo.CommodityVo">
+    <id column="fruitid" property="fruitid"/>
+    <result column="fruit_name" property="name"/>
+    <result column="fruit_price" property="price"/>
+    <result column="locality" property="locality"/>
+    <collection property="accessories" ofType="com.FruitSalesPlatform.entity.Accessory">
+        <id column="accessoryid" property="accessoryid"/>
+        <result column="accessory_name" property="name"/>
+        <result column="accessory_price" property="price"/>
+    </collection>
+</resultMap>
+
+    <select id="findList" resultMap="findListMap">
+        select
+            commodities.fruitid,commodities.name as fruit_name,commodities.price as fruit_price,commodities.locality,
+            accessory.accessoryid,accessory.name as accessory_name,accessory.price as accessory_price
+        from
+            commodities left join accessory on commodities.fruitid = accessory.fruitid;
+    </select>
+
+    <select id="findListByKey" resultMap="findListMap">
+        select
+            commodities.fruitid,commodities.name as fruit_name,commodities.price as fruit_price,commodities.locality,
+            accessory.accessoryid,accessory.name as accessory_name,accessory.price as accessory_price
+        from
+            commodities left join accessory on commodities.fruitid = accessory.fruitid
+        where
+            concat(commodities.name,commodities.locality) like '%${key}%'
     </select>
 
 </mapper>
